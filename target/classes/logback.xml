@@ -1,0 +1,35 @@
+<configuration debug="true">
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+    <conversionRule conversionWord="highlightex" converterClass="listeners.HighlightingCompositeConverter"/>
+<!--    <property name="LOG_DIR" value="./"/>-->
+<!--    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>${log.directory.path:-./}execution.log</file>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+<!--            <fileNamePattern>${log.directory.path:-./}/archive.%i.log</fileNamePattern>-->
+<!--            <minIndex>1</minIndex>-->
+<!--            <maxIndex>1</maxIndex>-->
+<!--        </rollingPolicy>-->
+<!--        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+<!--            <maxFileSize>5MB</maxFileSize>-->
+<!--        </triggeringPolicy>-->
+<!--        <encoder>-->
+<!--            <pattern>%d{dd MMM yyyy;HH:mm:ss} [%thread] %-5level %logger{30} - %msg%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+    <appender name="colorAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{dd MMM yyyy;HH:mm:ss} %green([%thread]) %highlightex(%level) %magenta(%logger{30}) - %highlightex(%msg%n)
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="ExtentReport" class="listeners.ExtentLogAppender"/>
+    <root level="DEBUG">
+        <appender-ref ref="colorAppender"/>
+<!--        <appender-ref ref="FILE"/>-->
+        <appender-ref ref="ExtentReport"/>
+    </root>
+<!--    <logger name="org.apache" level="WARN" />-->
+<!--    <logger name="httpclient" level="WARN" />-->
+    <logger name="org.testng" level="WARN" />
+<!--    <logger name="freemarker.cache" level="WARN"/>-->
+</configuration>
