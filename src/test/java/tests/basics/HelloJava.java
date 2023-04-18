@@ -20,6 +20,11 @@ public class HelloJava {
         log.info("The ASCII value of a is: "+ch1);
         log.info("The ASCII value of b is: "+ch2);
 
+        /*
+        *   In order to check fail status of report
+        * Assert.assertTrue(Boolean.FALSE);
+        * */
+
         /*  In order to check parallel execution
 
         for (int i= 0; i<100; i++){
@@ -48,7 +53,6 @@ public class HelloJava {
     public void getInstanceFromFile() throws Exception {
         ObjectInputStream in=new ObjectInputStream(new FileInputStream("employee.txt"));
         Employee e=(Employee)in.readObject();
-        System.out.println(e.getEmpid()+" "+e.getEmpname());
 
         log.info(e.getEmpid()+" "+e.getEmpname());
         in.close();
@@ -59,28 +63,12 @@ public class HelloJava {
         Employee employee =Employee.class.getConstructor().newInstance();
         employee.setEmpid(1);
         employee.setEmpname("manu");
-        System.out.println(employee.getEmpid()+"----------"+employee.getEmpname());
         log.info(employee.getEmpid()+"----------"+employee.getEmpname());
 
         Employee emp = (Employee) Class.forName("tests.demoFiles.Employee").getConstructor().newInstance();
         emp.setEmpid(1);
         emp.setEmpname("Raj");
-        System.out.println(emp.getEmpid()+"----------"+emp.getEmpname());
         log.info(emp.getEmpid()+"----------"+emp.getEmpname());
     }
 
-    @Test
-    public void getBranch() {
-        try{
-            Process process = Runtime.getRuntime().exec("git rev-parse --abbrev-ref HEAD");
-            process.waitFor();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String gitBranchName = reader.readLine();
-            System.out.println(gitBranchName);
-            process.destroy();
-            reader.close();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 }

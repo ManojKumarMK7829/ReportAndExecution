@@ -7,7 +7,6 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import lombok.extern.slf4j.Slf4j;
-import org.testng.annotations.Test;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -56,7 +55,6 @@ public class ExtentReportHelper {
         if (gitBranchName != null)
             extentReports.setSystemInfo("Git Branch", gitBranchName);
         extentReports.attachReporter(htmlReporter);
-        System.out.println("111111"+ gitBranchName);
         return extentReports;
     }
 

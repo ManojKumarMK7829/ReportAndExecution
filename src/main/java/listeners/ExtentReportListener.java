@@ -1,6 +1,5 @@
 package listeners;
 
-import com.aventstack.extentreports.ExtentTest;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.*;
 
@@ -31,8 +30,10 @@ public class ExtentReportListener implements ISuiteListener, IInvokedMethodListe
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (testResult.getStatus() == ITestResult.FAILURE) {
             String getMethodName = testResult.getMethod().getConstructorOrMethod().getName();
+            System.out.println(testResult.getTestClass().getName());
             String getClassName = testResult.getTestClass().getName().split("\\.")[1];
             log.info("Test class name : " + getClassName + " Test method name : " + getMethodName + " got failed");
+            ExtentReportHelper.getTest().fail("Test class name : " + getClassName + " Test method name : " + getMethodName + " got failed");
 //            ExtentReportHelper.addScreenshotOnFailure(AppiumDriverManager.getAppiumDriver(), getMethodName, getClassName);
         }
     }

@@ -1,7 +1,7 @@
 package tests.Executor;
 
-import listeners.AnnotationListener;
 import listeners.ExtentReportListener;
+import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 import org.reflections.scanners.SubTypesScanner;
@@ -14,6 +14,7 @@ import org.testng.xml.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class TestRunner {
 
     public static void main(String[] args) throws Exception {
@@ -27,14 +28,14 @@ public class TestRunner {
         getListners().forEach(suite::addListener);
 
 
-        boolean execution = true;
+        boolean execution = false;
 
         if (execution) {    // true if parallel is required from file utility
             if (true) { // set true for classes
-                System.out.println("Parallel Classes");
+                log.info("Parallel Classes");
                 suite.setParallel(XmlSuite.ParallelMode.CLASSES);
             } else if (true) {// set true for methods
-                System.out.println("Parallel methods");
+                log.info("Parallel methods");
                 suite.setParallel(XmlSuite.ParallelMode.METHODS);
             } else {
                 throw new RuntimeException("Not Supported PARALLEL_EXECUTION_TYPE: "+ "");
@@ -98,7 +99,7 @@ public class TestRunner {
     private static List<String> getTestGroups(String grp) {
         String testGroups = grp;     // Get all group like regression, smoke
         if (!testGroups.isEmpty()) {
-            System.out.println("Test groups to be executed : " + testGroups);
+            log.info("Test groups to be executed : " + testGroups);
             return Arrays.stream(testGroups.split(",")).map(String::trim).collect(Collectors.toList());
         }
         return new ArrayList<String>();
@@ -107,7 +108,6 @@ public class TestRunner {
     private static ArrayList<String> getListners() {
         ArrayList<String> listnerList = new ArrayList<>();
         listnerList.add(ExtentReportListener.class.getName());
-//        listnerList.add(AnnotationListener.class.getName());
         return listnerList;
     }
 }
