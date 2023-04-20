@@ -135,7 +135,7 @@ public class BasicProgram {
 
     @Test
     public void getTestData() {
-        System.out.println(ConfigFileManager.getInstance(FilePath.CONFIG_PROPS).getPropertyValue(ConfigConstants.PLATFORM));
+        System.out.println(ConfigFileManager.getInstance(FilePath.CONFIG_PROPS).getPropertyValue(ConfigConstants.PARALLELL_METHODS));
     }
 }
 

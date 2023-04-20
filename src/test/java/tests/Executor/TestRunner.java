@@ -1,5 +1,7 @@
 package tests.Executor;
 
+import configuration.ConfigConstants;
+import configuration.ConfigFileManager;
 import listeners.ExtentReportListener;
 import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
@@ -10,6 +12,7 @@ import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 import org.testng.TestNG;
 import org.testng.xml.*;
+import pathConfig.FilePath;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,7 +22,9 @@ public class TestRunner {
 
     public static void main(String[] args) throws Exception {
 
-        String includedGroups = "basics"; // replace with your included groups
+        ConfigFileManager configFileManager = ConfigFileManager.getInstance(FilePath.CONFIG_PROPS);
+         // replace with your included groups
+        String includedGroups = configFileManager.getPropertyValue(ConfigConstants.INCLUDED_GROUPS).trim();
 
         List<XmlClass> classes = getXmlClassesFromIncludedGroups();
 
@@ -27,21 +32,19 @@ public class TestRunner {
         suite.setName("Dynamic TestNG Suite");
         getListners().forEach(suite::addListener);
 
-
-        boolean execution = false;
+        boolean execution = (Boolean.parseBoolean(configFileManager.getPropertyValue(ConfigConstants.PARALLELL_METHODS)) || Boolean.parseBoolean(configFileManager.getPropertyValue(ConfigConstants.PARALLELL_CLASSES))) ? true : false;
 
         if (execution) {    // true if parallel is required from file utility
-            if (true) { // set true for classes
+            if (Boolean.parseBoolean(configFileManager.getPropertyValue(ConfigConstants.PARALLELL_CLASSES))) { // set true for classes
                 log.info("Parallel Classes");
                 suite.setParallel(XmlSuite.ParallelMode.CLASSES);
-            } else if (true) {// set true for methods
+            } else if (Boolean.parseBoolean(configFileManager.getPropertyValue(ConfigConstants.PARALLELL_METHODS))) {// set true for methods
                 log.info("Parallel methods");
                 suite.setParallel(XmlSuite.ParallelMode.METHODS);
             } else {
                 throw new RuntimeException("Not Supported PARALLEL_EXECUTION_TYPE: "+ "");
             }
-            //xmlTest.setThreadCount(Integer.parseInt(configFileManager.getProperty(Config.THREAD_COUNT) == null ? "1" : configFileManager.getProperty(Config.THREAD_COUNT)));
-            suite.setThreadCount(20); //deviceCount is the number to set thread count
+            suite.setThreadCount(Integer.parseInt(configFileManager.getPropertyValue(ConfigConstants.THREAD_COUNT) == null ? "1" : configFileManager.getPropertyValue(ConfigConstants.THREAD_COUNT))); //deviceCount is the number to set thread count
         }
 
         XmlTest test = new XmlTest(suite);
