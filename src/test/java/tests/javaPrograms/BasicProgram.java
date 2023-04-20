@@ -1,10 +1,14 @@
 package tests.javaPrograms;
 
+import configuration.ConfigConstants;
+import configuration.ConfigFileManager;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
+import pathConfig.FilePath;
 
 import java.util.Arrays;
 
-
+@Slf4j
 public class BasicProgram {
 
     @Test(groups = {"basics"})
@@ -22,14 +26,14 @@ public class BasicProgram {
             }
             countOfLetters = countOfLetters+arrayLetter[i] + count;
         }
-        System.out.println(countOfLetters);
+        log.info(countOfLetters);
     }
 
     @Test(groups = {"basics"})
     public void countNumberOfCharacters() {
         String words = "We'll look good together!";
         String character = words.replaceAll("[^A-Za-z]", "");
-        System.out.println(character+ " " +character.length());
+        log.info(character+ " " +character.length());
     }
 
     @Test(groups = {"basics"})
@@ -43,7 +47,7 @@ public class BasicProgram {
                 count++;
             }
         }
-        System.out.println(count);
+        log.info(String.valueOf(count));
     }
 
     @Test(groups = {"basics"})
@@ -57,7 +61,7 @@ public class BasicProgram {
             else
                 consnantsCount++;
         }
-        System.out.println(vowelsCount+ " "+ consnantsCount);
+        log.info(vowelsCount+ " "+ consnantsCount);
     }
 
     @Test(groups = {"basics"})
@@ -67,16 +71,16 @@ public class BasicProgram {
         word1 = word1.toLowerCase();
         word2 = word2.toLowerCase();
         if(word1.length() != word2.length())
-            System.out.println(word1+" and "+word2+ " are not anagram");
+            log.info(word1+" and "+word2+ " are not anagram");
         else {
             char [] arr1 = word1.toCharArray();
             char [] arr2 = word2.toCharArray();
             Arrays.sort(arr1);
             Arrays.sort(arr2);
             if (Arrays.equals(arr1, arr2))
-                System.out.println("Both are anagrams");
+                log.info("Both are anagrams");
             else
-                System.out.println("Both are not anagrams");
+                log.info("Both are not anagrams");
         }
     }
 
@@ -121,12 +125,17 @@ public class BasicProgram {
         for (int i = word1.length()-1; i>= 0; i--) {
             reversed = reversed + word1.toCharArray()[i];
         }
-        System.out.println("Using logic ->"+reversed);
+        log.info("Using logic ->"+reversed);
 
         /*      Using String Builder    */
         StringBuilder stringBuilder = new StringBuilder(word1);
         String reversed1 = String.valueOf(stringBuilder.reverse());
-        System.out.println("Using string builder ->"+ reversed1);
+        log.info("Using string builder ->"+ reversed1);
+    }
+
+    @Test
+    public void getTestData() {
+        System.out.println(ConfigFileManager.getInstance(FilePath.CONFIG_PROPS).getPropertyValue(ConfigConstants.PLATFORM));
     }
 }
 

@@ -52,5 +52,12 @@
             <version>3.1.5</version>
         </dependency>
         <!--    Complete required for logging commands to report    -->
+
+        <!--    For binding all key and value map from property file    -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.2.2</version>
+        </dependency>
     </dependencies>
 </project>
