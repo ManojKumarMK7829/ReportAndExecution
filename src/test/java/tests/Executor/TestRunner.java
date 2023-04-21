@@ -11,6 +11,9 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 import org.testng.TestNG;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 import org.testng.xml.*;
 import pathConfig.FilePath;
 
@@ -20,11 +23,13 @@ import java.util.stream.Collectors;
 @Slf4j
 public class TestRunner {
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    @Parameters("testGroup")
+    public static void testExecutor(@Optional String groupsIncluded) throws Exception {
 
         ConfigFileManager configFileManager = ConfigFileManager.getInstance(FilePath.CONFIG_PROPS);
-         // replace with your included groups
-        String includedGroups = configFileManager.getPropertyValue(ConfigConstants.INCLUDED_GROUPS).trim();
+         // replace with your included groups configFileManager.getPropertyValue(ConfigConstants.INCLUDED_GROUPS).trim()
+        String includedGroups = (groupsIncluded != null) ? groupsIncluded : configFileManager.getPropertyValue(ConfigConstants.INCLUDED_GROUPS).trim();
 
         List<XmlClass> classes = getXmlClassesFromIncludedGroups();
 
@@ -113,5 +118,12 @@ public class TestRunner {
         listnerList.add(ExtentReportListener.class.getName());
         return listnerList;
     }
+
+//    @Test
+//    @Parameters("testGroup")
+//    public static void testExecutor1(@Optional String groupsIncluded)  {
+//        System.out.println("Hii ");
+//        System.out.println(groupsIncluded);
+//    }
 }
 
