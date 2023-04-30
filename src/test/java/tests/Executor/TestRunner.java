@@ -2,6 +2,7 @@ package tests.Executor;
 
 import configuration.ConfigConstants;
 import configuration.ConfigFileManager;
+import listeners.AnnotationListener;
 import listeners.ExtentReportListener;
 import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
@@ -116,6 +117,7 @@ public class TestRunner {
     private static ArrayList<String> getListners() {
         ArrayList<String> listnerList = new ArrayList<>();
         listnerList.add(ExtentReportListener.class.getName());
+        listnerList.add(AnnotationListener.class.getName());
         return listnerList;
     }
 

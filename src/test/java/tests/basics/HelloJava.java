@@ -1,6 +1,7 @@
 package tests.basics;
 
 import lombok.extern.slf4j.Slf4j;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.demoFiles.Employee;
 
@@ -20,10 +21,10 @@ public class HelloJava {
         log.info("The ASCII value of a is: "+ch1);
         log.info("The ASCII value of b is: "+ch2);
 
-        /*
-        *   In order to check fail status of report
-        * Assert.assertTrue(Boolean.FALSE);
-        * */
+//        /*
+//           In order to check fail status of report
+//        Assert.assertTrue(Boolean.FALSE);
+//        * */
 
         /*  In order to check parallel execution
 
