@@ -72,4 +72,15 @@ public class HelloJava {
         log.info(emp.getEmpid()+"----------"+emp.getEmpname());
     }
 
+    @Test(groups = {"basics"})
+    public void checkTheNumberIsPerfectSqrt()  {
+        double number = 49;
+        double sqrt = Math.sqrt(number);
+
+        if(sqrt - Math.floor(sqrt) == 0)
+            log.info("Number is perfect square root number");
+        else
+            log.info("Number is not perfect square root number");
+    }
+
 }
