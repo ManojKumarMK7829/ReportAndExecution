@@ -74,7 +74,7 @@ public class HelloJava {
 
     @Test(groups = {"basics"})
     public void checkTheNumberIsPerfectSqrt()  {
-        double number = 49;
+        double number = 100;
         double sqrt = Math.sqrt(number);
 
         if(sqrt - Math.floor(sqrt) == 0)
