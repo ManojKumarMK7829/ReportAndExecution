@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 import tests.demoFiles.Employee;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Slf4j
 public class HelloJava {
@@ -81,6 +83,9 @@ public class HelloJava {
             log.info("Number is perfect square root number");
         else
             log.info("Number is not perfect square root number");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+        System.out.println(Integer.parseInt(dateFormat.format(new Date())));
     }
 
 }

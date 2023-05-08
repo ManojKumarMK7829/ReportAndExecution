@@ -1,0 +1,14 @@
+name: First_Workflow
+on : workflow_dispatch
+jobs :
+  first_job:
+    runs-on : [self-hosted]
+    steps :
+      - name : Print greeting
+        run : echo "Hello"
+      - name : Running multiple lines
+        run : |
+          echo "Hii"
+          echo "What do you do?"
+      - name : Print good bye
+        run : echo "Done with execution"
