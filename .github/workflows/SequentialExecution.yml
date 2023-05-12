@@ -1,4 +1,4 @@
-name: Multiple Jobs Execution
+name: Sequential Jobs Execution
 on:
   push:
     branches:
