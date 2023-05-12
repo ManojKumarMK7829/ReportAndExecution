@@ -1,4 +1,4 @@
-name: Trigger Execution By Maven Command
+name: Multiple Jobs Execution
 on:
   push:
     branches:
