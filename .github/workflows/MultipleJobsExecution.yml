@@ -22,3 +22,18 @@ jobs:
 
       - name : In order to run testcases
         run : mvn clean test # mvn clean install can also be used.
+
+  deploy:
+    runs-on: windows-latest
+    steps:
+      - name: Download The Code From Repo
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Install All Dependencies from MVN Command
+        run: echo "Deploy to different enviroment"
