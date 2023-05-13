@@ -1,0 +1,12 @@
+name : Basic Expression And Contest Objects
+
+on : workflow_dispatch
+
+jobs :
+  info:
+    runs-on : windows-latest
+    steps :
+      - name : Expression And Contest Objects
+        run : echo "${{github}}"
+        # ${{github}} -> Expression
+        # From above expression github -> Contest Objects
