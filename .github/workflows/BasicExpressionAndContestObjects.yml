@@ -7,6 +7,6 @@ jobs :
     runs-on : windows-latest
     steps :
       - name : Expression And Contest Objects
-        run : echo "${{github}}"
-        # ${{github}} -> Expression
+        run : echo "${{toJSON(github)}}"
+        # ${{toJSON(github)}} -> Expression
         # From above expression github -> Contest Objects
