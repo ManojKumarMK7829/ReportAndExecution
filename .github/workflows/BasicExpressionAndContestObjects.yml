@@ -4,7 +4,7 @@ on : workflow_dispatch
 
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps :
       - name: Output Context data
         run: echo "${{ toJSON(github) }}"
