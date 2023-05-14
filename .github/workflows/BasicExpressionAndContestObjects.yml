@@ -2,8 +2,17 @@ name : Basic Expression And Contest Objects
 
 on :
   workflow_dispatch :
-  paths-ignore :
-    -'.github/workflows/*'
+  push :
+    branches :
+      - master
+    paths-ignore :
+      -'.github/workflows/*'
+
+  pull_request:
+    types:
+      - opened
+    paths-ignore:
+      -'.github/workflows/*'
 
 jobs:
   test:
