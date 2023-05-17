@@ -20,8 +20,8 @@ jobs :
           distribution: 'temurin'
 
       - name: Block post-actions and complete job
-          if: always()
-          run: exit 1
+        if: always()
+        run: exit 1
 
   InstallDependencies :
     needs : downloadCode
@@ -31,8 +31,8 @@ jobs :
         run : mvn clean install -Dskiptests
 
       - name: Block post-actions and complete job
-          if: always()
-          run: exit 1
+        if: always()
+        run: exit 1
 
   ExecuteTests :
     needs : InstallDependencies
