@@ -49,7 +49,7 @@ jobs :
           distribution: 'temurin'
 
       - name: Install dependencies
-          run: mvn clean install -Dskiptests
+        run: mvn clean install -Dskiptests
 
       - name : Execute the test cases
         run : mvn clean test
