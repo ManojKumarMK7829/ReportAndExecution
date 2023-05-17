@@ -1,0 +1,53 @@
+name : Report Creation
+
+on :
+  push :
+    branches:
+      - master
+
+jobs :
+
+  downloadCode :
+    runs-on : windows-latest
+    steps :
+      - name : Download The Code
+        uses : actions/checkout@v3
+      - name : Set up JDK
+        uses: actions/setup-java@v3
+          with:
+            java-version: '17'
+            distribution: 'temurin'
+
+  InstallDependencies :
+    needs : downloadCode
+    runs-on : windows-latest
+    steps :
+      - name : Install dependencies
+        run : mvn clean install -Dskiptests
+
+  ExecuteTests :
+    needs : InstallDependencies
+    runs-on : windows-latest
+    steps :
+      - name : Execute the test cases
+        run : mvn clean test
+      - name : Upload Artifact or Upload The Report
+        uses : actions/upload-artifact@v3
+        with :
+          path : TestReport # Specifying the path of the report
+        #  path : |
+         #   path1
+          #  path2 if we are specifying multiple paths to store data we can use pipeline and specify the path.
+
+  Report :
+    needs : ExecuteTests
+    runs-on: windows-latest
+    steps:
+      - name : Get Artifact or Download Report
+        uses : actions/download-artifact@v3
+        with :
+          name : Upload Artifact or Upload The Report
+      - name : Report or artifact contents
+        run : dir
+      - name : Check report
+        run : echo "Closing Execution"
