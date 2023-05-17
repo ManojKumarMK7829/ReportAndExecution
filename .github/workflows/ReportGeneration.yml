@@ -53,9 +53,11 @@ jobs :
 
       - name : Execute the test cases
         run : mvn clean test
+
       - name : Upload Artifact or Upload The Report
         uses : actions/upload-artifact@v3
         with :
+          name : ReportFile
           path : TestReport # Specifying the path of the report
         #  path : |
          #   path1
@@ -68,7 +70,7 @@ jobs :
       - name : Get Artifact or Download Report
         uses : actions/download-artifact@v3
         with :
-          name : Upload Artifact or Upload The Report
+          name : ReportFile
       - name : Report or artifact contents
         run : dir
       - name : Check report
