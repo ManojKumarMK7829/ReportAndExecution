@@ -12,6 +12,8 @@ jobs :
     steps :
       - name : Download The Code
         uses : actions/checkout@v3
+        with:
+          skip_post_checkout: true
       - name : Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -28,6 +30,7 @@ jobs :
   ExecuteTests :
     needs : InstallDependencies
     runs-on : windows-latest
+    uses : actions/checkout@v3
     steps :
       - name : Execute the test cases
         run : mvn clean test
