@@ -28,7 +28,7 @@ jobs :
         run : mvn clean install -DskipTests
 
   test:
-    need : build
+    needs : build
     runs-on : windows-latest
     steps :
       - name : Get The Code
@@ -58,7 +58,7 @@ jobs :
           path : |
               TestReport
   deploy:
-    need : test
+    needs : test
     runs-on : windows-latest
     steps :
       - name : Download the report
