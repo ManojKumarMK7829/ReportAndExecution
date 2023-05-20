@@ -25,7 +25,7 @@ jobs :
           distribution : 'temurin'
 
       - name : Install dependencies
-        run : mvn clean install -DskipTests
+        run : mvn dependency:resolve
 
   test:
     needs : build
@@ -34,7 +34,7 @@ jobs :
       - name : Get The Code
         uses : actions/checkout@v3
 
-      - name: Cache local Maven repository
+      - name: ReStore Cache local Maven repository
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
