@@ -22,7 +22,7 @@ jobs :
         uses : actions/setup-java@v3
         with :
           java-version : '17'
-          distribution : 'termurin'
+          distribution : 'temurin'
 
       - name : Install dependencies
         run : mvn clean install -DskipTests
