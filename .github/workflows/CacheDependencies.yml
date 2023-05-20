@@ -51,7 +51,7 @@ jobs :
           distribution: 'temurin'
 
       - name: Execute Tese cases
-        run: mvn test
+        run: mvn test -Dmaven.repo.local=$HOME/.m2/repository
 
       - name : Upload the result report
         uses : actions/upload-artifact@v3
