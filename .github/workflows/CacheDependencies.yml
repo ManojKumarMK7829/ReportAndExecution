@@ -53,9 +53,9 @@ jobs :
 
       - name : Upload the result report
         uses : actions/upload-artifact@v3
-          with :
-            name : Reportfile
-            path : |
+        with :
+          name : Reportfile
+          path : |
               TestReport
   deploy:
     need : test
