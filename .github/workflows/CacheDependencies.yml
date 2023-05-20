@@ -49,7 +49,7 @@ jobs :
           distribution: 'temurin'
 
       - name: Install dependencies
-        run: mvn clean test
+        run: mvn surefire:test
 
       - name : Upload the result report
         uses : actions/upload-artifact@v3
